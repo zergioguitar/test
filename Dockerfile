@@ -1,3 +1,5 @@
-FROM openjdk:8
+FROM openjdk:8-jdk-alpine
 ADD jvm.options /config/
-ADD target/test-0.0.1-SNAPSHOT.jar /config/dropins/
+VOLUME /tmp
+COPY target/*.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
